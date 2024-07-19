@@ -362,6 +362,8 @@ ldns_key_buf2dsa_raw(const unsigned char* key, size_t len)
 	if(len < (size_t)1 + SHA_DIGEST_LENGTH + 3*length)
 		return NULL;
 
+	/* FIXME: use EVP_PKEY_fromdata to generate EVP_PKEY directly. EVP_PKEY-DSA(7), OSSL_PARAM_BLD(3) */
+
 	Q = BN_bin2bn(key+offset, SHA_DIGEST_LENGTH, NULL);
 	offset += SHA_DIGEST_LENGTH;
 
@@ -442,6 +444,9 @@ ldns_key_buf2rsa_raw(const unsigned char* key, size_t len)
 		exp = key[0];
 		offset = 1;
 	}
+
+	/* FIXME: use EVP_PKEY_fromdata to generate EVP_PKEY directly. EVP_PKEY-RSA(7)
+	 * Use OSSL_PARAM_BLD or OSSL_PARAM_int(3ossl)  */
 
 	/* key length at least one */
 	if(len < (size_t)offset + exp + 1)
