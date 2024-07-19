@@ -376,7 +376,6 @@ So either no OpenSSL at all (the include already failed), or the version < 3.0.0
 ], [
 ])], [
 	AC_MSG_RESULT(yes)
-	CFLAGS="-DOPENSSL_API_COMPAT=10100 $CFLAGS"
 ], [	AC_MSG_RESULT(no)
 ])
 
